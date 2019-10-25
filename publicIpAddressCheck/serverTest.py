@@ -11,7 +11,6 @@ def main():
         c,addr = s.accept()
         c.send('success'.encode('utf-8'))
         c.close()
-        break
 
 if __name__ == "__main__":
     main()

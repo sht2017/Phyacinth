@@ -5,12 +5,10 @@ def main(queue,target):
     s = socket.socket()
     port = 35306
     error=0
-    print('t1')
     try:
         s.connect((target, port))
         msg=s.recv(1024).decode()
         s.close()
-        print('t2')
     except ConnectionRefusedError:
         error=1
     except TimeoutError:
@@ -20,11 +18,15 @@ def main(queue,target):
             error=0
         else:
             error=3
-
+            
     if queue!='':
-        print('t3')
-        queue.put(error)
-    
+        queue.put(errorCodeProcess.main(error))
+    else:
+        return errorCodeProcess.main(error)
+
 if __name__ == "__main__":
     import sys
-    main(sys.argv[1])
+    if main('',sys.argv[1]) == 0:
+        print('not support')
+    else:
+        print('support')
